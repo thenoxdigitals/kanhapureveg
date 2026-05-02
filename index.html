@@ -152,6 +152,18 @@
       .animate-delay-3 {
         animation-delay: 0.6s;
       }
+
+      /* multi-page helper */
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+      .nav-link-active {
+        color: #15803d !important;
+        font-weight: 600;
+      }
     </style>
   </head>
 
@@ -188,1278 +200,734 @@
 
             <div class="hidden md:flex items-center gap-8">
               <a
-                href="index.html"
-                class="text-green-700 font-semibold transition-colors"
+                data-page="home"
+                class="text-green-700 font-semibold transition-colors nav-link-active"
                 >Home</a
               >
               <a
-                href="about.html"
+                data-page="about"
                 class="text-gray-700 hover:text-green-600 font-medium transition-colors"
                 >About</a
               >
               <a
-                href="menu.html"
+                data-page="menu"
                 class="text-gray-700 hover:text-green-600 font-medium transition-colors"
                 >Menu</a
               >
               <a
-                href="reviews.html"
+                data-page="reviews"
                 class="text-gray-700 hover:text-green-600 font-medium transition-colors"
                 >Reviews</a
               >
               <a
-                href="contact.html"
+                data-page="contact"
                 class="text-gray-700 hover:text-green-600 font-medium transition-colors"
                 >Contact</a
               >
             </div>
 
-            <a
-              href="tel:9890450767"
-              class="btn-primary text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-semibold text-sm shadow-lg flex items-center gap-2"
+            <!-- Mobile menu button placeholder, optional JS if you want later -->
+            <button
+              type="button"
+              class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-green-700 hover:bg-green-50 focus:outline-none"
+              aria-label="Menu"
+              id="mobile-menu-button"
             >
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                />
-              </svg>
-              <span class="hidden sm:inline" id="nav-phone"
-                >Call Now</span
-              >
-            </a>
+              ☰
+            </button>
           </div>
         </div>
       </nav>
 
-      <!-- Hero Section -->
-      <section id="home" class="relative pt-20 sm:pt-24 overflow-hidden">
-        <div
-          class="hero-gradient min-h-[600px] sm:min-h-[700px] relative"
-        >
-          <!-- Decorations -->
-          <div
-            class="leaf-decoration top-24 left-10 floating"
-            style="animation-delay: 0s"
-          >
-            <svg
-              class="w-16 h-16 sm:w-24 sm:h-24 text-green-500"
-              viewBox="0 0 100 100"
-              fill="currentColor"
-            >
-              <path
-                d="M50 10c-20 0-35 20-35 40s15 40 35 40 35-20 35-40-15-40-35-40zm0 70c-15 0-25-15-25-30s10-30 25-30 25 15 25 30-10 30-25 30z"
-              />
-            </svg>
-          </div>
-          <div
-            class="leaf-decoration top-40 right-16 floating"
-            style="animation-delay: 1s"
-          >
-            <svg
-              class="w-12 h-12 sm:w-20 sm:h-20 text-orange-400"
-              viewBox="0 0 100 100"
-              fill="currentColor"
-            >
-              <circle cx="50" cy="50" r="40" />
-            </svg>
-          </div>
-          <div
-            class="leaf-decoration bottom-32 left-1/4 floating"
-            style="animation-delay: 2s"
-          >
-            <svg
-              class="w-10 h-10 sm:w-16 sm:h-16 text-green-400"
-              viewBox="0 0 100 100"
-              fill="currentColor"
-            >
-              <path d="M50 5L90 50L50 95L10 50z" />
-            </svg>
-          </div>
+      <!-- Simple spacer for fixed nav -->
+      <div class="h-16 sm:h-20"></div>
 
-          <div class="w-full px-4 sm:px-6 lg:px-10 py-12 sm:py-20">
+      <!-- HOME PAGE -->
+      <div id="home" class="page active">
+        <main class="pb-16">
+          <!-- Hero -->
+          <section class="hero-gradient pt-10 pb-16 sm:pt-12 sm:pb-20">
             <div
-              class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+              class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 relative"
             >
-              <!-- Text -->
-              <div class="text-center lg:text-left animate-fade-in">
+              <!-- Decorative leaves -->
+              <div
+                class="leaf-decoration floating hidden md:block"
+                style="top: 40px; right: 60px"
+              >
+                <span class="text-6xl">🥬</span>
+              </div>
+              <div
+                class="leaf-decoration floating hidden md:block"
+                style="bottom: 40px; left: 40px; animation-delay: 0.6s"
+              >
+                <span class="text-6xl">🌿</span>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-10 items-center">
+                <!-- Hero text -->
                 <div
-                  class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
+                  class="animate-fade-in animate-delay-1 flex flex-col gap-4"
                 >
                   <span
-                    class="w-2 h-2 bg-green-500 rounded-full animate-pulse"
-                  ></span>
-                  100% Pure Vegetarian
-                </div>
-                <h1
-                  class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight mb-6"
-                  id="hero-headline"
-                >
-                  Best Pure Veg Family Restaurant in
-                  <span class="text-green-600">Kondhwa</span>
-                </h1>
-                <p
-                  class="text-lg sm:text-xl text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0"
-                  id="hero-subheadline"
-                >
-                  Multi-cuisine North Indian, South Indian &amp;
-                  Chinese delicacies prepared with love and served with
-                  care.
-                </p>
-                <div
-                  class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-                >
-                  <a
-                    href="menu.html"
-                    class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl flex items-center justify-center gap-2"
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs sm:text-sm font-semibold w-fit"
                   >
-                    <svg
-                      class="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                      />
-                    </svg>
-                    View Menu
-                  </a>
-                  <a
-                    href="tel:9890450767"
-                    class="btn-secondary text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl flex items-center justify-center gap-2"
+                    <span class="text-base">⭐</span> 4.8/5 Rated Family
+                    Restaurant
+                  </span>
+                  <h2
+                    class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-green-800 leading-tight"
                   >
-                    <svg
-                      class="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                      />
-                    </svg>
-                    <span id="hero-phone">Call Now</span>
-                  </a>
-                </div>
-
-                <div
-                  class="flex items-center justify-center lg:justify-start gap-6 mt-8"
-                >
-                  <div class="flex items-center gap-2">
-                    <div class="flex -space-x-1">
-                      <div
-                        class="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center text-sm"
-                      >
-                        ⭐
-                      </div>
-                      <div
-                        class="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center text-sm"
-                      >
-                        ⭐
-                      </div>
-                      <div
-                        class="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center text-sm"
-                      >
-                        ⭐
-                      </div>
-                      <div
-                        class="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center text-sm"
-                      >
-                        ⭐
-                      </div>
-                    </div>
-                    <span class="text-gray-600 font-medium"
-                      >4.2+ Rating</span
-                    >
-                  </div>
-                  <div class="h-6 w-px bg-gray-300"></div>
-                  <span class="text-gray-600 font-medium"
-                    >Since 2010</span
+                    Pure Vegetarian Taste,
+                    <span class="text-orange-500">Just Like Home</span>
+                  </h2>
+                  <p
+                    class="text-sm sm:text-base text-gray-600 max-w-xl"
                   >
-                </div>
-              </div>
-
-              <!-- Hero Image -->
-              <div class="relative animate-fade-in animate-delay-1">
-                <div
-                  class="relative rounded-3xl overflow-hidden shadow-2xl"
-                >
-                  <div
-                    class="aspect-[4/3] bg-gradient-to-br from-green-100 to-orange-100 flex items-center justify-center relative"
-                  >
-                    <div
-                      class="absolute inset-0 flex items-center justify-center"
-                    >
-                      <div class="grid grid-cols-2 gap-4 p-8">
-                        <div
-                          class="bg-white rounded-2xl p-4 shadow-lg transform rotate-3 hover:rotate-0 transition-transform"
-                        >
-                          <div class="text-5xl mb-2">🍛</div>
-                          <p class="text-sm font-medium text-gray-700">
-                            North Indian
-                          </p>
-                        </div>
-                        <div
-                          class="bg-white rounded-2xl p-4 shadow-lg transform -rotate-3 hover:rotate-0 transition-transform"
-                        >
-                          <div class="text-5xl mb-2">🥘</div>
-                          <p class="text-sm font-medium text-gray-700">
-                            South Indian
-                          </p>
-                        </div>
-                        <div
-                          class="bg-white rounded-2xl p-4 shadow-lg transform -rotate-2 hover:rotate-0 transition-transform"
-                        >
-                          <div class="text-5xl mb-2">🥡</div>
-                          <p class="text-sm font-medium text-gray-700">
-                            Chinese
-                          </p>
-                        </div>
-                        <div
-                          class="bg-white rounded-2xl p-4 shadow-lg transform rotate-2 hover:rotate-0 transition-transform"
-                        >
-                          <div class="text-5xl mb-2">🍽️</div>
-                          <p class="text-sm font-medium text-gray-700">
-                            Unlimited Thali
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  class="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl"
-                >
-                  <div class="flex items-center gap-3">
-                    <div
-                      class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center"
-                    >
-                      <span class="text-2xl">🌿</span>
-                    </div>
-                    <div>
-                      <p class="font-bold text-gray-800">Pure Veg</p>
-                      <p class="text-sm text-gray-500">
-                        No Onion/Garlic Option
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  class="absolute -top-4 -right-4 bg-orange-500 text-white rounded-2xl p-4 shadow-xl"
-                >
-                  <p class="text-sm font-medium">Starting from</p>
-                  <p class="text-2xl font-bold">₹200</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- About Preview -->
-      <section class="py-16 sm:py-24 bg-white">
-        <div class="w-full px-4 sm:px-6 lg:px-10">
-          <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div class="order-2 lg:order-1">
-              <div class="relative">
-                <div
-                  class="bg-gradient-to-br from-green-50 to-orange-50 rounded-3xl p-8 sm:p-12"
-                >
-                  <div class="grid grid-cols-2 gap-6">
-                    <div
-                      class="bg-white rounded-2xl p-6 shadow-lg card-hover"
-                    >
-                      <div
-                        class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-4"
-                      >
-                        <span class="text-3xl">🏆</span>
-                      </div>
-                      <h4
-                        class="font-bold text-gray-800 text-lg"
-                      >
-                        14+ Years
-                      </h4>
-                      <p class="text-gray-500 text-sm">
-                        Of Excellence
-                      </p>
-                    </div>
-                    <div
-                      class="bg-white rounded-2xl p-6 shadow-lg card-hover"
-                    >
-                      <div
-                        class="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mb-4"
-                      >
-                        <span class="text-3xl">👨‍👩‍👧‍👦</span>
-                      </div>
-                      <h4
-                        class="font-bold text-gray-800 text-lg"
-                      >
-                        10K+
-                      </h4>
-                      <p class="text-gray-500 text-sm">
-                        Happy Families
-                      </p>
-                    </div>
-                    <div
-                      class="bg-white rounded-2xl p-6 shadow-lg card-hover"
-                    >
-                      <div
-                        class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-4"
-                      >
-                        <span class="text-3xl">🍽️</span>
-                      </div>
-                      <h4
-                        class="font-bold text-gray-800 text-lg"
-                      >
-                        100+
-                      </h4>
-                      <p class="text-gray-500 text-sm">Dishes</p>
-                    </div>
-                    <div
-                      class="bg-white rounded-2xl p-6 shadow-lg card-hover"
-                    >
-                      <div
-                        class="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mb-4"
-                      >
-                        <span class="text-3xl">⭐</span>
-                      </div>
-                      <h4
-                        class="font-bold text-gray-800 text-lg"
-                      >
-                        4.2+
-                      </h4>
-                      <p class="text-gray-500 text-sm">Rating</p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white rounded-full px-6 py-3 shadow-xl flex items-center gap-3"
-                >
-                  <span class="text-2xl">🛕</span>
-                  <span class="font-medium text-gray-700"
-                    >Near ISKCON Temple</span
-                  >
-                </div>
-              </div>
-            </div>
-
-            <div class="order-1 lg:order-2">
-              <div
-                class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
-              >
-                Our Story
-              </div>
-              <h2
-                class="text-3xl sm:text-4xl font-bold text-gray-800 mb-6"
-                id="about-title"
-              >
-                A Legacy of
-                <span class="text-green-600">Pure</span> &
-                <span class="text-orange-500">Delicious</span> Food
-              </h2>
-              <p
-                class="text-gray-600 text-lg leading-relaxed mb-6"
-              >
-                Since <strong>2010</strong>, Kanha Veg has been
-                serving authentic vegetarian cuisine to the families
-                of Kondhwa and beyond. Located near the serene
-                <strong>ISKCON Temple</strong>, our restaurant
-                embodies purity, hygiene and heartfelt hospitality.
-              </p>
-              <p
-                class="text-gray-600 text-lg leading-relaxed mb-8"
-              >
-                Every dish we prepare is crafted with fresh
-                ingredients, traditional recipes and a commitment to
-                quality that makes us a beloved dining destination.
-              </p>
-              <div class="flex flex-wrap gap-4">
-                <div
-                  class="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-full"
-                >
-                  <svg
-                    class="w-5 h-5 text-green-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span class="text-gray-700 font-medium"
-                    >Fresh Ingredients</span
-                  >
-                </div>
-                <div
-                  class="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-full"
-                >
-                  <svg
-                    class="w-5 h-5 text-green-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span class="text-gray-700 font-medium"
-                    >Hygienic Kitchen</span
-                  >
-                </div>
-                <div
-                  class="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-full"
-                >
-                  <svg
-                    class="w-5 h-5 text-green-600"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span class="text-gray-700 font-medium"
-                    >Affordable Prices</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Menu Preview -->
-      <section
-        id="specialties"
-        class="py-16 sm:py-24 bg-gradient-to-b from-amber-50/50 to-white"
-      >
-        <div class="w-full px-4 sm:px-6 lg:px-10">
-          <div class="text-center mb-16">
-            <div
-              class="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
-            >
-              Our Menu
-            </div>
-            <h2
-              class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4"
-            >
-              Explore Our
-              <span class="text-green-600">Specialties</span>
-            </h2>
-            <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-              From aromatic North Indian curries to crispy South
-              Indian dosas and flavourful Chinese dishes, there is
-              something for every vegetarian at Kanha Veg.
-            </p>
-          </div>
-
-          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- North Indian -->
-            <div
-              class="bg-white rounded-3xl p-6 shadow-lg card-hover border border-gray-100"
-            >
-              <div
-                class="w-20 h-20 bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl flex items-center justify-center mb-6 mx-auto"
-              >
-                <span class="text-5xl">🍛</span>
-              </div>
-              <h3
-                class="text-xl font-bold text-gray-800 text-center mb-3"
-              >
-                North Indian
-              </h3>
-              <p class="text-gray-500 text-center text-sm mb-4">
-                Rich curries, aromatic biryanis, fresh rotis and
-                more.
-              </p>
-              <div class="flex flex-wrap justify-center gap-2">
-                <span
-                  class="bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-xs font-medium"
-                  >Paneer</span
-                >
-                <span
-                  class="bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-xs font-medium"
-                  >Dal</span
-                >
-                <span
-                  class="bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-xs font-medium"
-                  >Biryani</span
-                >
-              </div>
-            </div>
-
-            <!-- South Indian -->
-            <div
-              class="bg-white rounded-3xl p-6 shadow-lg card-hover border border-gray-100"
-            >
-              <div
-                class="w-20 h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center mb-6 mx-auto"
-              >
-                <span class="text-5xl">🥘</span>
-              </div>
-              <h3
-                class="text-xl font-bold text-gray-800 text-center mb-3"
-              >
-                South Indian
-              </h3>
-              <p class="text-gray-500 text-center text-sm mb-4">
-                Crispy dosas, fluffy idlis and tangy sambhar served
-                hot.
-              </p>
-              <div class="flex flex-wrap justify-center gap-2">
-                <span
-                  class="bg-green-50 text-green-600 px-3 py-1 rounded-full text-xs font-medium"
-                  >Dosa</span
-                >
-                <span
-                  class="bg-green-50 text-green-600 px-3 py-1 rounded-full text-xs font-medium"
-                  >Idli</span
-                >
-                <span
-                  class="bg-green-50 text-green-600 px-3 py-1 rounded-full text-xs font-medium"
-                  >Uttapam</span
-                >
-              </div>
-            </div>
-
-            <!-- Chinese -->
-            <div
-              class="bg-white rounded-3xl p-6 shadow-lg card-hover border border-gray-100"
-            >
-              <div
-                class="w-20 h-20 bg-gradient-to-br from-red-100 to-red-200 rounded-2xl flex items-center justify-center mb-6 mx-auto"
-              >
-                <span class="text-5xl">🥡</span>
-              </div>
-              <h3
-                class="text-xl font-bold text-gray-800 text-center mb-3"
-              >
-                Chinese
-              </h3>
-              <p class="text-gray-500 text-center text-sm mb-4">
-                Indo-Chinese favourites with bold flavours and a
-                tasty crunch.
-              </p>
-              <div class="flex flex-wrap justify-center gap-2">
-                <span
-                  class="bg-red-50 text-red-600 px-3 py-1 rounded-full text-xs font-medium"
-                  >Manchurian</span
-                >
-                <span
-                  class="bg-red-50 text-red-600 px-3 py-1 rounded-full text-xs font-medium"
-                  >Noodles</span
-                >
-                <span
-                  class="bg-red-50 text-red-600 px-3 py-1 rounded-full text-xs font-medium"
-                  >Rice</span
-                >
-              </div>
-            </div>
-
-            <!-- Unlimited Thali -->
-            <div
-              class="bg-gradient-to-br from-green-500 to-green-600 rounded-3xl p-6 shadow-lg card-hover text-white relative overflow-hidden"
-            >
-              <div
-                class="absolute top-0 right-0 bg-orange-400 text-white px-4 py-1 rounded-bl-xl text-sm font-bold"
-              >
-                POPULAR
-              </div>
-              <div
-                class="w-20 h-20 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center mb-6 mx-auto"
-              >
-                <span class="text-5xl">🍽️</span>
-              </div>
-              <h3 class="text-xl font-bold text-center mb-3">
-                Unlimited Thali
-              </h3>
-              <p class="text-green-100 text-center text-sm mb-4">
-                Complete meal with variety of vegetables, rotis, rice
-                and dessert.
-              </p>
-              <div class="text-center">
-                <span
-                  class="bg-white/20 backdrop-blur px-4 py-2 rounded-full text-sm font-bold"
-                  >Starting ₹199</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Why Choose Us -->
-      <section class="py-16 sm:py-24 bg-white">
-        <div class="w-full px-4 sm:px-6 lg:px-10">
-          <div class="text-center mb-16">
-            <div
-              class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
-            >
-              Why Kanha Veg
-            </div>
-            <h2
-              class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4"
-            >
-              Why Families
-              <span class="text-orange-500">Love Us</span>
-            </h2>
-          </div>
-
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              class="flex gap-4 p-6 bg-gradient-to-br from-green-50 to-transparent rounded-2xl"
-            >
-              <div
-                class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0"
-              >
-                <span class="text-2xl">🌿</span>
-              </div>
-              <div>
-                <h3
-                  class="font-bold text-gray-800 text-lg mb-2"
-                >
-                  100% Pure Vegetarian
-                </h3>
-                <p class="text-gray-500">
-                  Sattvic food options available, with no onion-garlic
-                  dishes served on request.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="flex gap-4 p-6 bg-gradient-to-br from-orange-50 to-transparent rounded-2xl"
-            >
-              <div
-                class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0"
-              >
-                <span class="text-2xl">🪴</span>
-              </div>
-              <div>
-                <h3
-                  class="font-bold text-gray-800 text-lg mb-2"
-                >
-                  Outdoor Seating
-                </h3>
-                <p class="text-gray-500">
-                  Enjoy meals in our open-air garden seating, perfect
-                  for evenings and weekends.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="flex gap-4 p-6 bg-gradient-to-br from-green-50 to-transparent rounded-2xl"
-            >
-              <div
-                class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0"
-              >
-                <span class="text-2xl">👨‍👩‍👧‍👦</span>
-              </div>
-              <div>
-                <h3
-                  class="font-bold text-gray-800 text-lg mb-2"
-                >
-                  Family Friendly
-                </h3>
-                <p class="text-gray-500">
-                  Spacious seating, kid-friendly menu and a welcoming
-                  environment.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="flex gap-4 p-6 bg-gradient-to-br from-orange-50 to-transparent rounded-2xl"
-            >
-              <div
-                class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0"
-              >
-                <span class="text-2xl">💰</span>
-              </div>
-              <div>
-                <h3
-                  class="font-bold text-gray-800 text-lg mb-2"
-                >
-                  Affordable Pricing
-                </h3>
-                <p class="text-gray-500">
-                  Quality food at ₹200–₹400 per person gives excellent
-                  value for money.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="flex gap-4 p-6 bg-gradient-to-br from-green-50 to-transparent rounded-2xl"
-            >
-              <div
-                class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0"
-              >
-                <span class="text-2xl">⚡</span>
-              </div>
-              <div>
-                <h3
-                  class="font-bold text-gray-800 text-lg mb-2"
-                >
-                  Quick Service
-                </h3>
-                <p class="text-gray-500">
-                  Fast and efficient service so you don’t have to wait
-                  long for your food.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="flex gap-4 p-6 bg-gradient-to-br from-orange-50 to-transparent rounded-2xl"
-            >
-              <div
-                class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0"
-              >
-                <span class="text-2xl">✨</span>
-              </div>
-              <div>
-                <h3
-                  class="font-bold text-gray-800 text-lg mb-2"
-                >
-                  Hygiene First
-                </h3>
-                <p class="text-gray-500">
-                  Clean kitchen, fresh ingredients and regularly
-                  sanitized dining area.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Reviews Preview -->
-      <section
-        id="reviews"
-        class="py-16 sm:py-24 bg-gradient-to-b from-green-50/50 to-white"
-      >
-        <div class="w-full px-4 sm:px-6 lg:px-10">
-          <div class="text-center mb-16">
-            <div
-              class="inline-flex items-center gap-2 bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
-            >
-              Customer Love
-            </div>
-            <h2
-              class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4"
-            >
-              What Our <span class="text-green-600">Guests Say</span>
-            </h2>
-            <div
-              class="flex justify-center gap-6 mt-6 flex-wrap"
-            >
-              <div
-                class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-md"
-              >
-                <span class="text-xl">📍</span>
-                <span class="font-bold text-gray-700">4.2</span>
-                <span class="text-gray-500 text-sm">Google</span>
-              </div>
-              <div
-                class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-md"
-              >
-                <span class="text-xl">🍽️</span>
-                <span class="font-bold text-gray-700">4.1</span>
-                <span class="text-gray-500 text-sm">Zomato</span>
-              </div>
-              <div
-                class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-md"
-              >
-                <span class="text-xl">📞</span>
-                <span class="font-bold text-gray-700">4.3</span>
-                <span class="text-gray-500 text-sm">Justdial</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div
-              class="bg-white rounded-2xl p-6 shadow-lg card-hover border border-gray-100"
-            >
-              <div class="flex items-center gap-1 mb-4">
-                <span class="text-yellow-400 text-xl">★★★★★</span>
-              </div>
-              <p class="text-gray-600 mb-6 leading-relaxed">
-                “Amazing food quality and taste! The paneer dishes are
-                absolutely delicious. Perfect place for family dining.
-                Been coming here for 5 years now.”
-              </p>
-              <div class="flex items-center gap-3">
-                <div
-                  class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center"
-                >
-                  <span class="text-xl font-bold text-green-600"
-                    >R</span
-                  >
-                </div>
-                <div>
-                  <p class="font-semibold text-gray-800">
-                    Rajesh Sharma
+                    Kanha Veg is a family-friendly pure vegetarian
+                    restaurant offering North Indian, South Indian,
+                    Chinese, and special Maharashtrian dishes in a clean,
+                    comfortable atmosphere.
                   </p>
-                  <p class="text-gray-500 text-sm">Regular Customer</p>
-                </div>
-              </div>
-            </div>
 
-            <div
-              class="bg-white rounded-2xl p-6 shadow-lg card-hover border border-gray-100"
-            >
-              <div class="flex items-center gap-1 mb-4">
-                <span class="text-yellow-400 text-xl">★★★★★</span>
-              </div>
-              <p class="text-gray-600 mb-6 leading-relaxed">
-                “Best unlimited thali in Kondhwa! Great value for
-                money. The staff is polite and the outdoor seating is
-                wonderful. Highly recommended!”
-              </p>
-              <div class="flex items-center gap-3">
-                <div
-                  class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center"
-                >
-                  <span class="text-xl font-bold text-orange-600"
-                    >P</span
-                  >
-                </div>
-                <div>
-                  <p class="font-semibold text-gray-800">
-                    Priya Kulkarni
-                  </p>
-                  <p class="text-gray-500 text-sm">Food Blogger</p>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="bg-white rounded-2xl p-6 shadow-lg card-hover border border-gray-100"
-            >
-              <div class="flex items-center gap-1 mb-4">
-                <span class="text-yellow-400 text-xl">★★★★☆</span>
-              </div>
-              <p class="text-gray-600 mb-6 leading-relaxed">
-                “Hygienic food and quick service. We visit every
-                weekend after ISKCON darshan. The Chinese items are
-                surprisingly good. Kids love it here!”
-              </p>
-              <div class="flex items-center gap-3">
-                <div
-                  class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center"
-                >
-                  <span class="text-xl font-bold text-green-600"
-                    >A</span
-                  >
-                </div>
-                <div>
-                  <p class="font-semibold text-gray-800">
-                    Amit Joshi
-                  </p>
-                  <p class="text-gray-500 text-sm">Family of 4</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-center mt-10">
-            <a
-              href="reviews.html"
-              class="btn-secondary text-white px-8 py-3 rounded-full font-semibold inline-flex items-center gap-2"
-            >
-              View All Reviews
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact Preview -->
-      <section id="contact" class="py-16 sm:py-24 bg-white">
-        <div class="w-full px-4 sm:px-6 lg:px-10">
-          <div class="grid lg:grid-cols-2 gap-12">
-            <div>
-              <div
-                class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
-              >
-                Visit Us
-              </div>
-              <h2
-                class="text-3xl sm:text-4xl font-bold text-gray-800 mb-6"
-              >
-                Find Us
-                <span class="text-orange-500">Near ISKCON</span>
-              </h2>
-              <p class="text-gray-600 text-lg mb-8">
-                Conveniently located on Katraj–Kondhwa Road, just a
-                few steps from the ISKCON Temple. Easy to find with
-                ample parking space for your vehicle.
-              </p>
-              <div class="space-y-6">
-                <div
-                  class="flex items-start gap-4 p-4 bg-green-50 rounded-xl"
-                >
-                  <div
-                    class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0"
-                  >
-                    <svg
-                      class="w-6 h-6 text-green-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-gray-800 mb-1">
-                      Address
-                    </h4>
-                    <p class="text-gray-600" id="contact-address">
-                      Katraj-Kondhwa Road, near ISKCON Temple,
-                      Kondhwa Budruk, Pune.
-                    </p>
-                  </div>
-                </div>
-
-                <div
-                  class="flex items-start gap-4 p-4 bg-orange-50 rounded-xl"
-                >
-                  <div
-                    class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0"
-                  >
-                    <svg
-                      class="w-6 h-6 text-orange-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-gray-800 mb-1">
-                      Phone
-                    </h4>
+                  <div class="flex flex-wrap gap-4 mt-3">
                     <a
-                      href="tel:9890450767"
-                      class="text-green-600 font-semibold text-lg hover:underline"
-                      id="contact-phone"
+                      data-page-link="menu"
+                      class="btn-primary text-white px-5 py-2.5 rounded-full shadow-md text-sm sm:text-base inline-flex items-center gap-2 cursor-pointer"
                     >
-                      9890450767
+                      View Menu
+                      <span>🍽️</span>
+                    </a>
+                    <a
+                      data-page-link="contact"
+                      class="btn-secondary text-white px-5 py-2.5 rounded-full shadow-md text-sm sm:text-base inline-flex items-center gap-2 cursor-pointer"
+                    >
+                      Book a Table
+                      <span>📞</span>
                     </a>
                   </div>
+
+                  <div class="flex flex-wrap gap-6 mt-6 text-xs sm:text-sm">
+                    <div class="flex items-center gap-2">
+                      <span class="text-green-500 text-lg">✅</span>
+                      <span class="text-gray-700"
+                        >Pure veg, no eggs</span
+                      >
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <span class="text-green-500 text-lg">✅</span>
+                      <span class="text-gray-700"
+                        >Family & group seating</span
+                      >
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <span class="text-green-500 text-lg">✅</span>
+                      <span class="text-gray-700">Hygienic kitchen</span>
+                    </div>
+                  </div>
                 </div>
 
+                <!-- Hero image / card -->
                 <div
-                  class="flex items-start gap-4 p-4 bg-green-50 rounded-xl"
+                  class="relative animate-fade-in animate-delay-2"
                 >
                   <div
-                    class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0"
+                    class="bg-white/80 rounded-3xl shadow-xl border border-green-100 p-5 sm:p-6 card-hover"
                   >
-                    <svg
-                      class="w-6 h-6 text-green-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                    <div class="flex justify-between items-center mb-4">
+                      <div>
+                        <h3
+                          class="text-lg sm:text-xl font-semibold text-green-800"
+                        >
+                          Today’s Special Thali
+                        </h3>
+                        <p class="text-xs sm:text-sm text-gray-500">
+                          Unlimited taste, perfect for family lunch &
+                          dinner.
+                        </p>
+                      </div>
+                      <span
+                        class="px-3 py-1 rounded-full bg-orange-100 text-orange-600 text-xs font-semibold"
+                        >Pure Veg</span
+                      >
+                    </div>
+
+                    <div
+                      class="grid grid-cols-2 gap-3 text-xs sm:text-sm mb-4"
                     >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-gray-800 mb-1">
-                      Hours
-                    </h4>
-                    <p class="text-gray-600">
-                      Open Daily: 11:00 AM – <strong>11:30 PM</strong>
-                    </p>
-                  </div>
-                </div>
-              </div>
+                      <div
+                        class="bg-green-50 rounded-2xl p-3 flex flex-col gap-1"
+                      >
+                        <span class="text-xs text-green-600 font-medium"
+                          >Mini Thali</span
+                        >
+                        <p class="text-gray-700">
+                          Roti, sabzi, dal, rice, salad, sweet
+                        </p>
+                        <span
+                          class="text-sm font-semibold text-orange-500"
+                          >Budget Friendly</span
+                        >
+                      </div>
+                      <div
+                        class="bg-orange-50 rounded-2xl p-3 flex flex-col gap-1"
+                      >
+                        <span class="text-xs text-orange-600 font-medium"
+                          >Maharaja Thali</span
+                        >
+                        <p class="text-gray-700">
+                          Variety sabzi, starters, dessert, more
+                        </p>
+                        <span
+                          class="text-sm font-semibold text-green-600"
+                          >Perfect for family</span
+                        >
+                      </div>
+                    </div>
 
-              <div class="mt-8">
-                <a
-                  href="contact.html"
-                  class="btn-primary text-white px-7 py-3 rounded-full font-semibold inline-flex items-center gap-2"
-                >
-                  Contact Page
-                </a>
-              </div>
-            </div>
+                    <div
+                      class="flex items-center justify-between text-xs sm:text-sm border-t border-dashed border-gray-200 pt-3"
+                    >
+                      <div class="flex flex-col">
+                        <span class="text-gray-500">Open</span>
+                        <span class="font-semibold text-green-700"
+                          >11:00 AM - 11:00 PM</span
+                        >
+                      </div>
+                      <div class="flex flex-col text-right">
+                        <span class="text-gray-500">Location</span>
+                        <span class="font-semibold text-gray-700"
+                          >Pune, Maharashtra</span
+                        >
+                      </div>
+                    </div>
+                  </div>
 
-            <div
-              class="bg-gradient-to-br from-green-100 to-orange-100 rounded-3xl p-8 flex items-center justify-center min-h-[400px] relative overflow-hidden"
-            >
-              <div class="text-center">
-                <div
-                  class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg"
-                >
-                  <span class="text-5xl">🛕</span>
-                </div>
-                <h3
-                  class="text-2xl font-bold text-gray-800 mb-2"
-                >
-                  Near ISKCON Temple
-                </h3>
-                <p class="text-gray-600 mb-6">Kondhwa, Pune</p>
-                <a
-                  href="https://maps.google.com/?q=Kanha+Veg+Kondhwa+Pune"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-primary text-white px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2"
-                >
-                  <svg
-                    class="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                  <div
+                    class="absolute -bottom-6 -left-4 bg-white rounded-2xl shadow-md px-3 py-2 flex items-center gap-2 text-xs sm:text-sm"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
-                    />
-                  </svg>
-                  Get Directions
-                </a>
+                    <span class="text-yellow-400 text-base">⭐</span>
+                    <div>
+                      <p class="font-semibold text-gray-800">
+                        4.8 rating
+                      </p>
+                      <p class="text-gray-500">
+                        500+ happy customers
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div
-                class="absolute top-4 right-4 w-20 h-20 bg-white/30 rounded-full"
-              ></div>
-              <div
-                class="absolute bottom-8 left-8 w-16 h-16 bg-white/30 rounded-full"
-              ></div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      <!-- CTA Section -->
-      <section
-        class="py-16 sm:py-24 bg-gradient-to-r from-green-600 to-green-700 relative overflow-hidden"
-      >
-        <div class="absolute inset-0 opacity-10">
-          <div
-            class="absolute top-10 left-10 w-40 h-40 bg-white rounded-full"
-          ></div>
-          <div
-            class="absolute bottom-10 right-10 w-60 h-60 bg-white rounded-full"
-          ></div>
-          <div
-            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-white rounded-full"
-          ></div>
-        </div>
-        <div
-          class="w-full px-4 sm:px-6 lg:px-10 text-center relative z-10"
-        >
-          <h2
-            class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6"
-          >
-            Visit Us Today with Your Family
-          </h2>
-          <p
-            class="text-green-100 text-lg sm:text-xl mb-10 max-w-2xl mx-auto"
-          >
-            Experience the taste of pure vegetarian cuisine in a warm,
-            family-friendly atmosphere. Your table is waiting at Kanha
-            Veg.
-          </p>
-          <div
-            class="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <a
-              href="tel:9890450767"
-              class="bg-white text-green-700 px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          <!-- Highlights / categories -->
+          <section class="py-10 sm:py-12">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
+              <div
+                class="grid md:grid-cols-4 gap-6 sm:gap-8 text-center"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                />
-              </svg>
-              Reserve Your Table
-            </a>
-            <a
-              href="https://maps.google.com/?q=Kanha+Veg+Kondhwa+Pune"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-secondary text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl flex items-center justify-center gap-2"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                <div
+                  class="bg-white/90 rounded-2xl p-4 sm:p-5 shadow-sm card-hover"
+                >
+                  <div class="text-2xl sm:text-3xl mb-2">🥗</div>
+                  <h3
+                    class="font-semibold text-green-700 text-sm sm:text-base"
+                  >
+                    Indian & Continental
+                  </h3>
+                  <p class="text-xs sm:text-sm text-gray-500 mt-1">
+                    Variety in North Indian & Continental dishes.
+                  </p>
+                </div>
+                <div
+                  class="bg-white/90 rounded-2xl p-4 sm:p-5 shadow-sm card-hover"
+                >
+                  <div class="text-2xl sm:text-3xl mb-2">🍛</div>
+                  <h3
+                    class="font-semibold text-green-700 text-sm sm:text-base"
+                  >
+                    Special Thali
+                  </h3>
+                  <p class="text-xs sm:text-sm text-gray-500 mt-1">
+                    Mini, regular & Maharaja thalis for full meals.
+                  </p>
+                </div>
+                <div
+                  class="bg-white/90 rounded-2xl p-4 sm:p-5 shadow-sm card-hover"
+                >
+                  <div class="text-2xl sm:text-3xl mb-2">☕</div>
+                  <h3
+                    class="font-semibold text-green-700 text-sm sm:text-base"
+                  >
+                    Snacks & Beverages
+                  </h3>
+                  <p class="text-xs sm:text-sm text-gray-500 mt-1">
+                    Chaat, starters, cold drinks & hot beverages.
+                  </p>
+                </div>
+                <div
+                  class="bg-white/90 rounded-2xl p-4 sm:p-5 shadow-sm card-hover"
+                >
+                  <div class="text-2xl sm:text-3xl mb-2">👨‍👩‍👧‍👦</div>
+                  <h3
+                    class="font-semibold text-green-700 text-sm sm:text-base"
+                  >
+                    Family Friendly
+                  </h3>
+                  <p class="text-xs sm:text-sm text-gray-500 mt-1">
+                    Comfortable seating & clean environment.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <!-- ABOUT PAGE -->
+      <div id="about" class="page">
+        <main class="pb-16">
+          <section class="pt-10 pb-12">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10">
+              <h2
+                class="text-2xl sm:text-3xl font-bold text-green-800 mb-4"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                />
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-              Get Directions
-            </a>
-          </div>
-        </div>
-      </section>
+                About Kanha Veg
+              </h2>
+              <p class="text-sm sm:text-base text-gray-700 mb-4">
+                Kanha Veg is a pure vegetarian family restaurant
+                committed to serving fresh, hygienic, and tasty food at
+                pocket-friendly prices. We believe that food should make
+                you feel at home – simple, flavorful, and satisfying.
+              </p>
+              <p class="text-sm sm:text-base text-gray-700 mb-4">
+                Our menu is carefully designed to offer something for
+                everyone – from classic Punjabi sabzis and rich gravies
+                to light snacks, South Indian favourites, and special
+                thalis for complete meals.
+              </p>
+              <p class="text-sm sm:text-base text-gray-700">
+                Whether you are visiting with family, friends, or
+                colleagues, we try to make sure you are comfortable,
+                well-served, and leave with a smile.
+              </p>
+
+              <div class="grid md:grid-cols-3 gap-6 mt-8">
+                <div
+                  class="bg-white rounded-2xl p-4 shadow-sm card-hover"
+                >
+                  <h3
+                    class="font-semibold text-green-700 text-sm sm:text-base mb-2"
+                  >
+                    Our Promise
+                  </h3>
+                  <p class="text-xs sm:text-sm text-gray-600">
+                    Fresh ingredients, clean kitchen practices, and
+                    consistent taste in every dish we serve.
+                  </p>
+                </div>
+                <div
+                  class="bg-white rounded-2xl p-4 shadow-sm card-hover"
+                >
+                  <h3
+                    class="font-semibold text-green-700 text-sm sm:text-base mb-2"
+                  >
+                    For Everyone
+                  </h3>
+                  <p class="text-xs sm:text-sm text-gray-600">
+                    From kids to elders, we keep spice, taste, and menu
+                    options suitable for all age groups.
+                  </p>
+                </div>
+                <div
+                  class="bg-white rounded-2xl p-4 shadow-sm card-hover"
+                >
+                  <h3
+                    class="font-semibold text-green-700 text-sm sm:text-base mb-2"
+                  >
+                    Friendly Service
+                  </h3>
+                  <p class="text-xs sm:text-sm text-gray-600">
+                    Our staff is trained to be polite, attentive, and
+                    quick so you enjoy your time here.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <!-- MENU PAGE -->
+      <div id="menu" class="page">
+        <main class="pb-16">
+          <section class="pt-10 pb-12">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6"
+              >
+                <h2
+                  class="text-2xl sm:text-3xl font-bold text-green-800"
+                >
+                  Our Menu Highlights
+                </h2>
+                <p class="text-xs sm:text-sm text-gray-600">
+                  Ask for the full menu at the restaurant – below are
+                  some popular items.
+                </p>
+              </div>
+
+              <div class="grid md:grid-cols-3 gap-6">
+                <!-- Thali -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm card-hover">
+                  <h3
+                    class="font-semibold text-green-700 text-base mb-2"
+                  >
+                    Thali & Meals
+                  </h3>
+                  <ul class="list-disc list-inside text-xs sm:text-sm text-gray-600 space-y-1">
+                    <li>Mini Thali</li>
+                    <li>Regular Thali</li>
+                    <li>Maharaja Thali</li>
+                    <li>Special Weekend Thali</li>
+                  </ul>
+                </div>
+
+                <!-- Punjabi -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm card-hover">
+                  <h3
+                    class="font-semibold text-green-700 text-base mb-2"
+                  >
+                    North Indian (Punjabi)
+                  </h3>
+                  <ul class="list-disc list-inside text-xs sm:text-sm text-gray-600 space-y-1">
+                    <li>Paneer Butter Masala</li>
+                    <li>Veg Kolhapuri / Veg Handi</li>
+                    <li>Dal Tadka / Dal Fry</li>
+                    <li>Jeera Rice / Veg Pulao</li>
+                  </ul>
+                </div>
+
+                <!-- Snacks -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm card-hover">
+                  <h3
+                    class="font-semibold text-green-700 text-base mb-2"
+                  >
+                    Snacks & Starters
+                  </h3>
+                  <ul class="list-disc list-inside text-xs sm:text-sm text-gray-600 space-y-1">
+                    <li>Veg Cutlet</li>
+                    <li>Paneer Tikka (veg)</li>
+                    <li>French Fries</li>
+                    <li>Veg Sandwich / Grilled Sandwich</li>
+                  </ul>
+                </div>
+
+                <!-- Chinese -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm card-hover">
+                  <h3
+                    class="font-semibold text-green-700 text-base mb-2"
+                  >
+                    Chinese Veg
+                  </h3>
+                  <ul class="list-disc list-inside text-xs sm:text-sm text-gray-600 space-y-1">
+                    <li>Veg Manchurian</li>
+                    <li>Hakka Noodles</li>
+                    <li>Schezwan Noodles</li>
+                    <li>Veg Fried Rice</li>
+                  </ul>
+                </div>
+
+                <!-- South Indian -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm card-hover">
+                  <h3
+                    class="font-semibold text-green-700 text-base mb-2"
+                  >
+                    South Indian
+                  </h3>
+                  <ul class="list-disc list-inside text-xs sm:text-sm text-gray-600 space-y-1">
+                    <li>Masala Dosa / Plain Dosa</li>
+                    <li>Idli Sambar</li>
+                    <li>Uttapam</li>
+                    <li>Vada Sambar</li>
+                  </ul>
+                </div>
+
+                <!-- Beverages -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm card-hover">
+                  <h3
+                    class="font-semibold text-green-700 text-base mb-2"
+                  >
+                    Beverages & Desserts
+                  </h3>
+                  <ul class="list-disc list-inside text-xs sm:text-sm text-gray-600 space-y-1">
+                    <li>Masala Chaas / Lassi</li>
+                    <li>Soft Drinks</li>
+                    <li>Tea / Coffee</li>
+                    <li>Ice Cream (Flavours)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <!-- REVIEWS PAGE -->
+      <div id="reviews" class="page">
+        <main class="pb-16">
+          <section class="pt-10 pb-12">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10">
+              <h2
+                class="text-2xl sm:text-3xl font-bold text-green-800 mb-4"
+              >
+                Customer Reviews
+              </h2>
+              <p class="text-sm sm:text-base text-gray-600 mb-6">
+                Our guests often come back with friends and family. Here
+                is what they say about Kanha Veg.
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-6">
+                <div
+                  class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm card-hover"
+                >
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="text-yellow-400 text-lg">⭐</span>
+                    <span class="text-yellow-500 text-xs sm:text-sm"
+                      >5.0</span
+                    >
+                  </div>
+                  <p class="text-xs sm:text-sm text-gray-700 mb-2">
+                    “Very good taste and clean place. We regularly visit
+                    with family for dinner. Their thali and paneer
+                    dishes are must try.”
+                  </p>
+                  <p class="text-xs sm:text-sm text-gray-500">
+                    – Local Family
+                  </p>
+                </div>
+                <div
+                  class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm card-hover"
+                >
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="text-yellow-400 text-lg">⭐</span>
+                    <span class="text-yellow-500 text-xs sm:text-sm"
+                      >4.8</span
+                    >
+                  </div>
+                  <p class="text-xs sm:text-sm text-gray-700 mb-2">
+                    “Good variety for pure veg. We had office team lunch
+                    here, service was fast and staff is polite.”
+                  </p>
+                  <p class="text-xs sm:text-sm text-gray-500">
+                    – Office Group
+                  </p>
+                </div>
+                <div
+                  class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm card-hover"
+                >
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="text-yellow-400 text-lg">⭐</span>
+                    <span class="text-yellow-500 text-xs sm:text-sm"
+                      >4.7</span
+                    >
+                  </div>
+                  <p class="text-xs sm:text-sm text-gray-700 mb-2">
+                    “Perfect for weekend dinner with family. We liked
+                    their Chinese and snacks as well.”
+                  </p>
+                  <p class="text-xs sm:text-sm text-gray-500">
+                    – Regular Customer
+                  </p>
+                </div>
+                <div
+                  class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm card-hover"
+                >
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="text-yellow-400 text-lg">⭐</span>
+                    <span class="text-yellow-500 text-xs sm:text-sm"
+                      >4.9</span
+                    >
+                  </div>
+                  <p class="text-xs sm:text-sm text-gray-700 mb-2">
+                    “Good food, good quantity, value for money. Family
+                    friendly restaurant.”
+                  </p>
+                  <p class="text-xs sm:text-sm text-gray-500">
+                    – Group of Friends
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <!-- CONTACT PAGE -->
+      <div id="contact" class="page">
+        <main class="pb-16">
+          <section class="pt-10 pb-12">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10">
+              <h2
+                class="text-2xl sm:text3xl font-bold text-green-800 mb-4"
+              >
+                Contact & Location
+              </h2>
+              <p class="text-sm sm:text-base text-gray-600 mb-6">
+                Call us for table booking, takeaway orders, or any
+                questions about our menu and services.
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-2xl p-4 shadow-sm">
+                  <h3
+                    class="font-semibold text-green-700 text-sm sm:text-base mb-2"
+                  >
+                    Contact Details
+                  </h3>
+                  <p class="text-xs sm:text-sm text-gray-700 mb-1">
+                    📍 Pune, Maharashtra
+                  </p>
+                  <p class="text-xs sm:text-sm text-gray-700 mb-1">
+                    📞 <a href="tel:+911234567890" class="text-green-700 underline">+91-12345-67890</a>
+                  </p>
+                  <p class="text-xs sm:text-sm text-gray-700 mb-1">
+                    🕒 11:00 AM - 11:00 PM
+                  </p>
+                  <p class="text-xs sm:text-sm text-gray-600 mt-2">
+                    Open all days. Timing may change on festivals.
+                  </p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-4 shadow-sm">
+                  <h3
+                    class="font-semibold text-green-700 text-sm sm:text-base mb-2"
+                  >
+                    Quick Enquiry
+                  </h3>
+                  <form class="space-y-3">
+                    <div>
+                      <label
+                        class="block text-xs sm:text-sm font-medium text-gray-700 mb-1"
+                        >Name</label
+                      >
+                      <input
+                        type="text"
+                        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                        placeholder="Your name"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-xs sm:text-sm font-medium text-gray-700 mb-1"
+                        >Phone</label
+                      >
+                      <input
+                        type="tel"
+                        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                        placeholder="Your phone number"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-xs sm:text-sm font-medium text-gray-700 mb-1"
+                        >Message</label
+                      >
+                      <textarea
+                        class="w-full border border-gray-200 rounded-lg px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                        rows="3"
+                        placeholder="Booking, party, or any query"
+                      ></textarea>
+                    </div>
+                    <button
+                      type="submit"
+                      class="btn-primary text-white px-4 py-2 rounded-full text-xs sm:text-sm"
+                    >
+                      Send Message
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
 
       <!-- Footer -->
-      <footer class="bg-gray-900 text-white py-12">
-        <div class="w-full px-4 sm:px-6 lg:px-10">
-          <div
-            class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8"
-          >
-            <div>
-              <div class="flex items-center gap-3 mb-4">
-                <div
-                  class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center"
-                >
-                  <span class="text-xl">🍃</span>
-                </div>
-                <div>
-                  <h3 class="text-xl font-bold">Kanha Veg</h3>
-                  <p class="text-green-400 text-sm">Pure Vegetarian</p>
-                </div>
-              </div>
-              <p class="text-gray-400 text-sm">
-                Serving authentic vegetarian cuisine with love since
-                2010.
-              </p>
-            </div>
-            <div>
-              <h4 class="font-bold mb-4">Quick Links</h4>
-              <ul class="space-y-2 text-gray-400">
-                <li>
-                  <a
-                    href="index.html"
-                    class="hover:text-green-400 transition-colors"
-                    >Home</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="about.html"
-                    class="hover:text-green-400 transition-colors"
-                    >About Us</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="menu.html"
-                    class="hover:text-green-400 transition-colors"
-                    >Menu</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="contact.html"
-                    class="hover:text-green-400 transition-colors"
-                    >Contact</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="font-bold mb-4">Cuisines</h4>
-              <ul class="space-y-2 text-gray-400">
-                <li>North Indian</li>
-                <li>South Indian</li>
-                <li>Chinese</li>
-                <li>Unlimited Thali</li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="font-bold mb-4">Contact</h4>
-              <ul class="space-y-2 text-gray-400">
-                <li class="flex items-center gap-2">
-                  <span>📍</span>
-                  <span>Near ISKCON Temple, Kondhwa</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <span>📞</span>
-                  <a
-                    href="tel:9890450767"
-                    class="hover:text-green-400 transition-colors"
-                    >9890450767</a
-                  >
-                </li>
-                <li class="flex items-center gap-2">
-                  <span>🕐</span>
-                  <span>11:00 AM - 11:30 PM</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div
-            class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm"
-          >
-            <p>
-              © 2024 Kanha Veg. All rights reserved. | Pure Vegetarian
-              Family Restaurant
-            </p>
+      <footer class="bg-green-900 text-white py-6 mt-10">
+        <div
+          class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm"
+        >
+          <p class="text-white/80">
+            © 2024 Kanha Veg. All rights reserved.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a data-page="home" class="hover:text-green-200 cursor-pointer"
+              >Home</a
+            >
+            <a data-page="about" class="hover:text-green-200 cursor-pointer"
+              >About</a
+            >
+            <a data-page="menu" class="hover:text-green-200 cursor-pointer"
+              >Menu</a
+            >
+            <a
+              data-page="reviews"
+              class="hover:text-green-200 cursor-pointer"
+              >Reviews</a
+            >
+            <a
+              data-page="contact"
+              class="hover:text-green-200 cursor-pointer"
+              >Contact</a
+            >
           </div>
         </div>
       </footer>
     </div>
+
+    <script>
+      function showPage(pageId) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        const target = document.getElementById(pageId);
+        if (target) target.classList.add("active");
+
+        document
+          .querySelectorAll("nav a[data-page]")
+          .forEach((a) => a.classList.remove("nav-link-active"));
+        document
+          .querySelectorAll("nav a[data-page]")
+          .forEach((a) => {
+            if (a.dataset.page === pageId) {
+              a.classList.add("nav-link-active");
+            }
+          });
+
+        window.location.hash = pageId;
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      document.addEventListener("click", function (e) {
+        const link = e.target.closest("a[data-page], a[data-page-link]");
+        if (!link) return;
+        const pageId = link.dataset.page || link.dataset.pageLink;
+        if (!pageId) return;
+        e.preventDefault();
+        showPage(pageId);
+      });
+
+      window.addEventListener("load", function () {
+        const hash = window.location.hash.replace("#", "");
+        if (hash) {
+          showPage(hash);
+        } else {
+          showPage("home");
+        }
+      });
+    </script>
   </body>
 </html>
